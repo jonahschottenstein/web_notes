@@ -34,6 +34,16 @@ const getLastNodeFirstRange = (initialRange, initialStartContainer) => {
 	return lastNodeParent.childNodes[lastNodeParent.childNodes.length - 1];
 };
 
+const createFirstRange = (initialStartContainer, initialRange) => {
+	let firstRange = createNewRange(
+		initialStartContainer,
+		initialRange.startOffset,
+		getLastNodeFirstRange(initialRange, initialStartContainer),
+		getOffset(getLastNodeFirstRange(initialRange, initialStartContainer))
+	);
+	return firstRange;
+};
+
 const inSameParagraph = (commonAncestor, startContainer, endContainer) => {
 	if (startContainer === endContainer) return true;
 	if (
