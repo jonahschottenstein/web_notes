@@ -17,6 +17,12 @@ const createNewRange = (startNode, startOffset, endNode, endOffset) => {
 	return newRange;
 };
 
+const createStyledSpan = (backgroundColor) => {
+	const span = document.createElement("span");
+	span.style.backgroundColor = backgroundColor;
+	return span;
+};
+
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 	console.log(message, sender, sendResponse);
 
