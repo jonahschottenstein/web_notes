@@ -37,4 +37,8 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 	const initialRange = getRange(initialSelection)[0];
 	const initialStartContainer = initialRange.startContainer;
 	const initialEndContainer = initialRange.endContainer;
+
+	let span = createStyledSpan("red");
+	highlightText(span, initialRange);
+	insertHighlight(initialRange, span);
 });
