@@ -17,13 +17,13 @@ const createNewRange = (startNode, startOffset, endNode, endOffset) => {
 	return newRange;
 };
 
-const getEndOffset = (initialRange) => {
+const getEndOffset = (node) => {
 	const endOffset =
-		initialRange.startContainer.nodeType === Node.TEXT_NODE ||
-		initialRange.startContainer.nodeType === Node.COMMENT_NODE ||
-		initialRange.startContainer.nodeType === Node.CDATA_SECTION_NODE
-			? initialRange.startContainer.textContent.length
-			: initialRange.startContainer.childNodes.length;
+		node.nodeType === Node.TEXT_NODE ||
+		node.nodeType === Node.COMMENT_NODE ||
+		node.nodeType === Node.CDATA_SECTION_NODE
+			? node.textContent.length
+			: node.childNodes.length;
 	return endOffset;
 };
 
