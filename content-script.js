@@ -17,6 +17,16 @@ const createNewRange = (startNode, startOffset, endNode, endOffset) => {
 	return newRange;
 };
 
+const getEndOffset = (initialRange) => {
+	const endOffset =
+		initialRange.startContainer.nodeType === Node.TEXT_NODE ||
+		initialRange.startContainer.nodeType === Node.COMMENT_NODE ||
+		initialRange.startContainer.nodeType === Node.CDATA_SECTION_NODE
+			? initialRange.startContainer.textContent.length
+			: initialRange.startContainer.childNodes.length;
+	return endOffset;
+};
+
 const createStyledSpan = (backgroundColor) => {
 	const span = document.createElement("span");
 	span.style.backgroundColor = backgroundColor;
