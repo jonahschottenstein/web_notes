@@ -28,6 +28,8 @@ const highlightText = (span, range) => {
 	return span;
 };
 
+const insertHighlight = (range, span) => range.insertNode(span);
+
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 	console.log(message, sender, sendResponse);
 
