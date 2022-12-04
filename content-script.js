@@ -92,5 +92,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 		let span = createStyledSpan("red");
 		highlightText(span, initialRange);
 		insertHighlight(initialRange, span);
+	} else {
+		createFirstRange(initialStartContainer, initialRange);
+		console.log(
+			"firstRange",
+			createFirstRange(initialStartContainer, initialRange).toString()
+		);
 	}
 });
