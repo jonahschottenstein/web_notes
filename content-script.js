@@ -11,6 +11,13 @@ const getRanges = () => {
 	return rangeArray;
 };
 
+const createNewRange = (startNode, startOffset, endNode, endOffset) => {
+	const newRange = document.createRange();
+	newRange.setStart(startNode, startOffset);
+	newRange.setEnd(endNode, endOffset);
+	return newRange;
+};
+
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 	console.log(message, sender, sendResponse);
 });
