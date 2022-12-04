@@ -23,6 +23,11 @@ const createStyledSpan = (backgroundColor) => {
 	return span;
 };
 
+const highlightText = (span, range) => {
+	span.appendChild(range.extractContents());
+	return span;
+};
+
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 	console.log(message, sender, sendResponse);
 
