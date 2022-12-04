@@ -65,7 +65,15 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 	const initialStartContainer = initialRange.startContainer;
 	const initialEndContainer = initialRange.endContainer;
 
-	let span = createStyledSpan("red");
-	highlightText(span, initialRange);
-	insertHighlight(initialRange, span);
+	if (
+		inSameParagraph(
+			initialRange.commonAncestorContainer,
+			initialStartContainer,
+			initialEndContainer
+		)
+	) {
+		let span = createStyledSpan("red");
+		highlightText(span, initialRange);
+		insertHighlight(initialRange, span);
+	}
 });
