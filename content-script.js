@@ -39,7 +39,7 @@ const createFirstRange = (initialStartContainer, initialRange) => {
 		initialStartContainer,
 		initialRange.startOffset,
 		getLastNodeFirstRange(initialRange, initialStartContainer),
-		getOffset(getLastNodeFirstRange(initialRange, initialStartContainer))
+		getEndOffset(getLastNodeFirstRange(initialRange, initialStartContainer))
 	);
 	return firstRange;
 };
