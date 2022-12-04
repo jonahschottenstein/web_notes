@@ -27,6 +27,23 @@ const getEndOffset = (initialRange) => {
 	return endOffset;
 };
 
+const inSameParagraph = (commonAncestor, startContainer, endContainer) => {
+	if (startContainer === endContainer) return true;
+	if (
+		startContainer.parentNode === commonAncestor ||
+		endContainer.parentNode === commonAncestor
+	)
+		return true;
+
+	if (
+		startContainer.parentNode.closest("p") ===
+		endContainer.parentNode.closest("p")
+	)
+		return true;
+
+	return false;
+};
+
 const createStyledSpan = (backgroundColor) => {
 	const span = document.createElement("span");
 	span.style.backgroundColor = backgroundColor;
