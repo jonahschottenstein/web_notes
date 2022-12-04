@@ -1,7 +1,6 @@
 const getSelection = () => window.getSelection();
 
-const getRange = () => {
-	const selection = getSelection();
+const getRange = (selection) => {
 	let rangeArray = [];
 
 	for (let i = 0; i < selection.rangeCount; i++) {
