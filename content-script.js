@@ -27,6 +27,13 @@ const getEndOffset = (node) => {
 	return endOffset;
 };
 
+const getLastNodeFirstRange = (initialRange, initialStartContainer) => {
+	const lastNodeParent = [
+		...initialRange.commonAncestorContainer.childNodes,
+	].find((node) => node.contains(initialStartContainer));
+	return lastNodeParent.childNodes[lastNodeParent.childNodes.length - 1];
+};
+
 const inSameParagraph = (commonAncestor, startContainer, endContainer) => {
 	if (startContainer === endContainer) return true;
 	if (
