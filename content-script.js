@@ -19,4 +19,9 @@ const createNewRange = (startNode, startOffset, endNode, endOffset) => {
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 	console.log(message, sender, sendResponse);
+
+	const initialSelection = getSelection();
+	const initialRange = getRange(initialSelection)[0];
+	const initialStartContainer = initialRange.startContainer;
+	const initialEndContainer = initialRange.endContainer;
 });
