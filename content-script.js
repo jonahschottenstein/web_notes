@@ -27,6 +27,11 @@ const getEndOffset = (node) => {
 	return endOffset;
 };
 
+const getContainerParent = (initialRange, container) =>
+	[...initialRange.commonAncestorContainer.childNodes].find((node) =>
+		node.contains(container)
+	);
+
 const getNodeRange = (initialRange, container) => {
 	let nodeParent = [...initialRange.commonAncestorContainer.childNodes].find(
 		(node) => node.contains(container)
