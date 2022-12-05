@@ -43,16 +43,6 @@ const getNodeRange = (initialRange, container) => {
 		: nodeParent.childNodes[0];
 };
 
-const createFirstRange = (initialStartContainer, initialRange) => {
-	let firstRange = createNewRange(
-		initialStartContainer,
-		initialRange.startOffset,
-		getLastNodeFirstRange(initialRange, initialStartContainer),
-		getEndOffset(getLastNodeFirstRange(initialRange, initialStartContainer))
-	);
-	return firstRange;
-};
-
 const inSameParagraph = (commonAncestor, startContainer, endContainer) => {
 	if (startContainer === endContainer) return true;
 	if (
@@ -105,11 +95,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 		console.log(getLastNodeFirstRange(initialRange, initialStartContainer));
 		console.log(getNodeRange(initialRange, initialStartContainer));
 		console.log(getNodeRange(initialRange, initialEndContainer));
-		createFirstRange(initialStartContainer, initialRange);
-		console.log(
-			"firstRange",
-			createFirstRange(initialStartContainer, initialRange).toString()
-		);
 		console.log(
 			"firstRange2",
 			createNewRange(
