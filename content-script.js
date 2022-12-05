@@ -39,6 +39,10 @@ const getNodeRange = (initialRange, container) => {
 		: nodeParent.childNodes[0];
 };
 
+const nextParagraphHasEndContainer = (startContainerParent, endContainer) => {
+	return startContainerParent.nextElementSibling.contains(endContainer);
+};
+
 const inSameParagraph = (commonAncestor, startContainer, endContainer) => {
 	if (startContainer === endContainer) return true;
 	if (
