@@ -44,6 +44,17 @@ const createFirstRange = (initialStartContainer, initialRange) => {
 	return firstRange;
 };
 
+const createLastRange = (initialEndContainer, initialRange) => {
+	let lastRange = createNewRange(
+		// change first initialEndContainer to start of end container parent
+		initialEndContainer,
+		0,
+		initialEndContainer,
+		initialRange.endOffset
+	);
+	return lastRange;
+};
+
 const inSameParagraph = (commonAncestor, startContainer, endContainer) => {
 	if (startContainer === endContainer) return true;
 	if (
