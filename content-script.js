@@ -34,6 +34,15 @@ const getLastNodeFirstRange = (initialRange, initialStartContainer) => {
 	return lastNodeParent.childNodes[lastNodeParent.childNodes.length - 1];
 };
 
+const getNodeRange = (initialRange, container) => {
+	let nodeParent = [...initialRange.commonAncestorContainer.childNodes].find(
+		(node) => node.contains(container)
+	);
+	return container === initialRange.startContainer
+		? nodeParent.childNodes[nodeParent.childNodes.length - 1]
+		: nodeParent.childNodes[0];
+};
+
 const createFirstRange = (initialStartContainer, initialRange) => {
 	let firstRange = createNewRange(
 		initialStartContainer,
@@ -104,6 +113,9 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 		highlightText(span, initialRange);
 		insertHighlight(initialRange, span);
 	} else {
+		console.log(getLastNodeFirstRange(initialRange, initialStartContainer));
+		console.log(getNodeRange(initialRange, initialStartContainer));
+		console.log(getNodeRange(initialRange, initialEndContainer));
 		createFirstRange(initialStartContainer, initialRange);
 		console.log(
 			"firstRange",
