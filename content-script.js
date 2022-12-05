@@ -121,5 +121,14 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 			"firstRange",
 			createFirstRange(initialStartContainer, initialRange).toString()
 		);
+		console.log(
+			"firstRange2",
+			createNewRange(
+				initialStartContainer,
+				initialRange.startOffset,
+				getNodeRange(initialRange, initialStartContainer),
+				getEndOffset(getNodeRange(initialRange, initialStartContainer))
+			).toString()
+		);
 	}
 });
