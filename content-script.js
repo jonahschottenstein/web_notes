@@ -27,13 +27,6 @@ const getEndOffset = (node) => {
 	return endOffset;
 };
 
-const getLastNodeFirstRange = (initialRange, initialStartContainer) => {
-	const lastNodeParent = [
-		...initialRange.commonAncestorContainer.childNodes,
-	].find((node) => node.contains(initialStartContainer));
-	return lastNodeParent.childNodes[lastNodeParent.childNodes.length - 1];
-};
-
 const getNodeRange = (initialRange, container) => {
 	let nodeParent = [...initialRange.commonAncestorContainer.childNodes].find(
 		(node) => node.contains(container)
@@ -92,7 +85,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 		highlightText(span, initialRange);
 		insertHighlight(initialRange, span);
 	} else {
-		console.log(getLastNodeFirstRange(initialRange, initialStartContainer));
 		console.log(getNodeRange(initialRange, initialStartContainer));
 		console.log(getNodeRange(initialRange, initialEndContainer));
 		console.log(
