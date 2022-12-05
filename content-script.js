@@ -33,9 +33,7 @@ const getContainerParent = (initialRange, container) =>
 	);
 
 const getNodeRange = (initialRange, container) => {
-	let nodeParent = [...initialRange.commonAncestorContainer.childNodes].find(
-		(node) => node.contains(container)
-	);
+	let nodeParent = getContainerParent(initialRange, container);
 	return container === initialRange.startContainer
 		? nodeParent.childNodes[nodeParent.childNodes.length - 1]
 		: nodeParent.childNodes[0];
