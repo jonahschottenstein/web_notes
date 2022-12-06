@@ -133,5 +133,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 			getContainerParent(initialRange, initialStartContainer),
 			initialEndContainer
 		);
+
+		if (nextNodeIsEndParent) {
+			console.log("nextNodeIsEndParent");
+			setHighlight(firstRange);
+			setHighlight(lastRange);
+		}
 	}
 });
