@@ -116,5 +116,12 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 				initialRange.endOffset
 			).toString()
 		);
+
+		let firstRange = createNewRange(
+			initialStartContainer,
+			initialRange.startOffset,
+			getNodeRange(initialRange, initialStartContainer),
+			getEndOffset(getNodeRange(initialRange, initialStartContainer))
+		);
 	}
 });
