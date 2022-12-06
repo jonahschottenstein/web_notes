@@ -129,5 +129,9 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 			initialEndContainer,
 			initialRange.endOffset
 		);
+		let nextNodeIsEndParent = nextParagraphHasEndContainer(
+			getContainerParent(initialRange, initialStartContainer),
+			initialEndContainer
+		);
 	}
 });
