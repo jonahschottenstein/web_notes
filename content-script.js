@@ -60,6 +60,33 @@ const inSameParagraph = (commonAncestor, startContainer, endContainer) => {
 	return false;
 };
 
+const getElementsBetween = (
+	initialRange,
+	initialStartContainer,
+	initialEndContainer
+) => {
+	let startContainerParent = getContainerParent(
+		initialRange,
+		initialStartContainer
+	);
+	let endContainerParent = getContainerParent(
+		initialRange,
+		initialEndContainer
+	);
+	// children or childNodes?
+	const elementsBetween = [
+		...initialRange.commonAncestorContainer.children,
+	].filter(
+		(element, index, array) =>
+			[...element.childNodes].find(
+				(node) => node.nodeType === Node.TEXT_NODE
+			) !== undefined &&
+			index > array.indexOf(startContainerParent) &&
+			index < array.indexOf(endContainerParent)
+	);
+	return elementsBetween;
+};
+
 const createStyledSpan = (backgroundColor) => {
 	const span = document.createElement("span");
 	span.style.backgroundColor = backgroundColor;
