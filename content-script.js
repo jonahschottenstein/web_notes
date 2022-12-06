@@ -202,4 +202,5 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 			setHighlight(lastRange);
 		}
 	}
+	initialSelection.removeAllRanges();
 });
