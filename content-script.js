@@ -94,9 +94,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 			initialEndContainer
 		)
 	) {
-		let span = createStyledSpan("red");
-		highlightText(span, initialRange);
-		insertHighlight(initialRange, span);
+		setHighlight(initialRange);
 	} else {
 		console.log(getNodeRange(initialRange, initialStartContainer));
 		console.log(getNodeRange(initialRange, initialEndContainer));
