@@ -138,6 +138,8 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 			console.log("nextNodeIsEndParent");
 			setHighlight(firstRange);
 			setHighlight(lastRange);
+		} else {
+			console.log("!nextNodeIsEndParent");
 		}
 	}
 });
