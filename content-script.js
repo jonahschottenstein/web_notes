@@ -73,6 +73,12 @@ const highlightText = (span, range) => {
 
 const insertHighlight = (range, span) => range.insertNode(span);
 
+const setHighlight = (range) => {
+	let span = createStyledSpan("red");
+	highlightText(span, range);
+	insertHighlight(range, span);
+};
+
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 	console.log(message, sender, sendResponse);
 
