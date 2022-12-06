@@ -183,6 +183,23 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 			setHighlight(lastRange);
 		} else {
 			console.log("!nextNodeIsEndParent");
+			console.log(
+				"elementsBetween",
+				getElementsBetween(
+					initialRange,
+					initialStartContainer,
+					initialEndContainer
+				)
+			);
+			setHighlight(firstRange);
+			highlightElementsBetween(
+				getElementsBetween(
+					initialRange,
+					initialStartContainer,
+					initialEndContainer
+				)
+			);
+			setHighlight(lastRange);
 		}
 	}
 });
