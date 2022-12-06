@@ -106,6 +106,22 @@ const setHighlight = (range) => {
 	insertHighlight(range, span);
 };
 
+const highlightElementsBetween = (elementsBetween) => {
+	// should probably do this for start/endContainer parent too
+	elementsBetween.forEach((element) => {
+		[...element.childNodes].forEach((node) => {
+			console.log(node.nodeType, node.nodeType === 1, node);
+			if (node.nodeType === 1) {
+				node.style.backgroundColor = "red";
+			} else if (node.nodeType === 3) {
+				const newRange = document.createRange();
+				newRange.selectNode(node);
+				setHighlight(newRange);
+			}
+		});
+	});
+};
+
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 	console.log(message, sender, sendResponse);
 
