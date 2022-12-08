@@ -181,6 +181,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 			}
 		});
 	}
+	initialSelection.removeAllRanges();
 });
 
 /* chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
