@@ -106,6 +106,25 @@ const setHighlight = (range) => {
 	insertHighlight(range, span);
 };
 
+let intersectingNodes = [];
+const getIntersectingTextNodes = (node, initialRange) => {
+	for (let i = 0; i < node.childNodes.length; i++) {
+		let child = node.childNodes[i];
+		if (
+			child.nodeType === 1 &&
+			window.getComputedStyle(child).display === "none"
+		) {
+			continue;
+		}
+		if (child.nodeType === 3 && initialRange.intersectsNode(child)) {
+			intersectingNodes.push(child);
+		} else {
+			getIntersectingTextNodes(child, initialRange);
+		}
+	}
+	return intersectingNodes;
+};
+
 const highlightElementsBetween = (elementsBetween) => {
 	// should probably do this for start/endContainer parent too
 	elementsBetween.forEach((element) => {
