@@ -151,6 +151,18 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 		initialRange.commonAncestorContainer,
 		initialRange
 	);
+	let startRange = createNewRange(
+		initialStartContainer,
+		initialRange.startOffset,
+		initialStartContainer,
+		initialStartContainer.textContent.length
+	);
+	let endRange = createNewRange(
+		initialEndContainer,
+		0,
+		initialEndContainer,
+		initialRange.endOffset
+	);
 
 	if (initialStartContainer === initialEndContainer) {
 		setHighlight(initialRange);
