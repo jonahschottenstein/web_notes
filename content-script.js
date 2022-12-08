@@ -122,6 +122,13 @@ const highlightElementsBetween = (elementsBetween) => {
 	});
 };
 
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+	const initialSelection = getSelection();
+	const initialRange = getRange(initialSelection)[0];
+	const initialStartContainer = initialRange.startContainer;
+	const initialEndContainer = initialRange.endContainer;
+});
+
 /* chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 	console.log(message, sender, sendResponse);
 
