@@ -168,6 +168,18 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 		setHighlight(initialRange);
 	} else {
 		console.log(intersectingTextNodes);
+
+		intersectingTextNodes.forEach((textNode, index, array) => {
+			if (index === 0) {
+				setHighlight(startRange);
+			} else if (index === array.length - 1) {
+				setHighlight(endRange);
+			} else {
+				let newTextRange = document.createRange();
+				newTextRange.selectNode(textNode);
+				setHighlight(newTextRange);
+			}
+		});
 	}
 });
 
