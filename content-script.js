@@ -182,6 +182,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 		});
 	}
 	initialSelection.removeAllRanges();
+	intersectingTextNodes.length = 0;
 });
 
 /* chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
