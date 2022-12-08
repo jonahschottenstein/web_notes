@@ -19,6 +19,7 @@ const createNewRange = (startNode, startOffset, endNode, endOffset) => {
 
 const createStyledSpan = (backgroundColor) => {
 	const span = document.createElement("span");
+	span.classList.add("web-notes-highlight");
 	span.style.backgroundColor = backgroundColor;
 	return span;
 };
