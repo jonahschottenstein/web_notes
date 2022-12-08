@@ -146,6 +146,12 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 	const initialRange = getRange(initialSelection)[0];
 	const initialStartContainer = initialRange.startContainer;
 	const initialEndContainer = initialRange.endContainer;
+
+	let intersectingTextNodes = getIntersectingTextNodes(
+		initialRange.commonAncestorContainer,
+		initialRange
+	);
+	console.log(intersectingTextNodes);
 });
 
 /* chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
