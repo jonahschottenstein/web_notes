@@ -151,7 +151,12 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 		initialRange.commonAncestorContainer,
 		initialRange
 	);
-	console.log(intersectingTextNodes);
+
+	if (initialStartContainer === initialEndContainer) {
+		setHighlight(initialRange);
+	} else {
+		console.log(intersectingTextNodes);
+	}
 });
 
 /* chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
