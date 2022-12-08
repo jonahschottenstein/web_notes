@@ -122,7 +122,7 @@ const highlightElementsBetween = (elementsBetween) => {
 	});
 };
 
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+/* chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 	console.log(message, sender, sendResponse);
 
 	const initialSelection = getSelection();
@@ -203,4 +203,4 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 		}
 	}
 	initialSelection.removeAllRanges();
-});
+}); */
