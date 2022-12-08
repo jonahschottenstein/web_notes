@@ -17,76 +17,6 @@ const createNewRange = (startNode, startOffset, endNode, endOffset) => {
 	return newRange;
 };
 
-const getEndOffset = (node) => {
-	const endOffset =
-		node.nodeType === Node.TEXT_NODE ||
-		node.nodeType === Node.COMMENT_NODE ||
-		node.nodeType === Node.CDATA_SECTION_NODE
-			? node.textContent.length
-			: node.childNodes.length;
-	return endOffset;
-};
-
-const getContainerParent = (initialRange, container) =>
-	[...initialRange.commonAncestorContainer.childNodes].find((node) =>
-		node.contains(container)
-	);
-
-const getNodeRange = (initialRange, container) => {
-	let nodeParent = getContainerParent(initialRange, container);
-	return container === initialRange.startContainer
-		? nodeParent.childNodes[nodeParent.childNodes.length - 1]
-		: nodeParent.childNodes[0];
-};
-
-const nextParagraphHasEndContainer = (startContainerParent, endContainer) => {
-	return startContainerParent.nextElementSibling.contains(endContainer);
-};
-
-const inSameParagraph = (commonAncestor, startContainer, endContainer) => {
-	if (startContainer === endContainer) return true;
-	if (
-		startContainer.parentNode === commonAncestor ||
-		endContainer.parentNode === commonAncestor
-	)
-		return true;
-
-	if (
-		startContainer.parentNode.closest("p") ===
-		endContainer.parentNode.closest("p")
-	)
-		return true;
-
-	return false;
-};
-
-const getElementsBetween = (
-	initialRange,
-	initialStartContainer,
-	initialEndContainer
-) => {
-	let startContainerParent = getContainerParent(
-		initialRange,
-		initialStartContainer
-	);
-	let endContainerParent = getContainerParent(
-		initialRange,
-		initialEndContainer
-	);
-	// children or childNodes?
-	const elementsBetween = [
-		...initialRange.commonAncestorContainer.children,
-	].filter(
-		(element, index, array) =>
-			[...element.childNodes].find(
-				(node) => node.nodeType === Node.TEXT_NODE
-			) !== undefined &&
-			index > array.indexOf(startContainerParent) &&
-			index < array.indexOf(endContainerParent)
-	);
-	return elementsBetween;
-};
-
 const createStyledSpan = (backgroundColor) => {
 	const span = document.createElement("span");
 	span.style.backgroundColor = backgroundColor;
@@ -123,22 +53,6 @@ const getIntersectingTextNodes = (node, initialRange) => {
 		}
 	}
 	return intersectingNodes;
-};
-
-const highlightElementsBetween = (elementsBetween) => {
-	// should probably do this for start/endContainer parent too
-	elementsBetween.forEach((element) => {
-		[...element.childNodes].forEach((node) => {
-			console.log(node.nodeType, node.nodeType === 1, node);
-			if (node.nodeType === 1) {
-				node.style.backgroundColor = "red";
-			} else if (node.nodeType === 3) {
-				const newRange = document.createRange();
-				newRange.selectNode(node);
-				setHighlight(newRange);
-			}
-		});
-	});
 };
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
