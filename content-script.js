@@ -48,6 +48,10 @@ const setHighlight = (range, spanClass) => {
 	insertHighlight(range, span);
 };
 
+const getHighlights = () => {
+	return document.querySelectorAll(".web-notes-highlight");
+};
+
 let intersectingNodes = [];
 const getIntersectingTextNodes = (node, initialRange) => {
 	for (let i = 0; i < node.childNodes.length; i++) {
