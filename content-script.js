@@ -17,12 +17,6 @@ const createNewRange = (startNode, startOffset, endNode, endOffset) => {
 	return newRange;
 };
 
-/* const createStyledSpan = (backgroundColor) => {
-	const span = document.createElement("span");
-	span.classList.add("web-notes-highlight");
-	span.style.backgroundColor = backgroundColor;
-	return span;
-}; */
 const createStyledSpan = (backgroundColor, spanClass) => {
 	const span = document.createElement("span");
 	span.classList.add("web-notes-highlight", spanClass);
@@ -37,11 +31,6 @@ const highlightText = (span, range) => {
 
 const insertHighlight = (range, span) => range.insertNode(span);
 
-/* const setHighlight = (range) => {
-	let span = createStyledSpan("red");
-	highlightText(span, range);
-	insertHighlight(range, span);
-}; */
 const setHighlight = (range, spanClass) => {
 	let span = createStyledSpan("red", spanClass);
 	highlightText(span, range);
@@ -130,22 +119,18 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 	);
 
 	if (initialStartContainer === initialEndContainer) {
-		// setHighlight(initialRange);
 		setHighlight(initialRange, numberedClass);
 	} else {
 		console.log(intersectingTextNodes);
 
 		intersectingTextNodes.forEach((textNode, index, array) => {
 			if (index === 0) {
-				// setHighlight(startRange);
 				setHighlight(startRange, numberedClass);
 			} else if (index === array.length - 1) {
-				// setHighlight(endRange);
 				setHighlight(endRange, numberedClass);
 			} else {
 				let newTextRange = document.createRange();
 				newTextRange.selectNode(textNode);
-				// setHighlight(newTextRange);
 				setHighlight(newTextRange, numberedClass);
 			}
 		});
