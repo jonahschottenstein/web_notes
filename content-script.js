@@ -62,6 +62,7 @@ const getNumbersArray = (highlights) => {
 	let numbersArray = [];
 	highlights.forEach((highlight) => {
 		let numberedClass = getNumberedClass(highlight);
+		console.log("numberedClass", numberedClass);
 		numbersArray.push(numberedClass[numberedClass.length - 1]);
 	});
 	return numbersArray;
@@ -102,6 +103,15 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 	const initialStartContainer = initialRange.startContainer;
 	const initialEndContainer = initialRange.endContainer;
 
+	let highlights = getHighlights();
+	console.log("highlights", highlights);
+	let numbersArray = getNumbersArray(highlights);
+	console.log("numbersArray", numbersArray);
+	let maxArrayNumber = getMaxArrayNumber(numbersArray);
+	console.log("reduce", getMaxArrayNumber(numbersArray));
+	let numberedClass = createNumberedClass(highlights, maxArrayNumber + 1);
+	console.log("numberedClass", numberedClass);
+
 	let intersectingTextNodes = getIntersectingTextNodes(
 		initialRange.commonAncestorContainer,
 		initialRange
@@ -120,19 +130,23 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 	);
 
 	if (initialStartContainer === initialEndContainer) {
-		setHighlight(initialRange);
+		// setHighlight(initialRange);
+		setHighlight(initialRange, numberedClass);
 	} else {
 		console.log(intersectingTextNodes);
 
 		intersectingTextNodes.forEach((textNode, index, array) => {
 			if (index === 0) {
-				setHighlight(startRange);
+				// setHighlight(startRange);
+				setHighlight(startRange, numberedClass);
 			} else if (index === array.length - 1) {
-				setHighlight(endRange);
+				// setHighlight(endRange);
+				setHighlight(endRange, numberedClass);
 			} else {
 				let newTextRange = document.createRange();
 				newTextRange.selectNode(textNode);
-				setHighlight(newTextRange);
+				// setHighlight(newTextRange);
+				setHighlight(newTextRange, numberedClass);
 			}
 		});
 	}
