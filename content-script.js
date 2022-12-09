@@ -67,6 +67,10 @@ const getNumbersArray = (highlights) => {
 	return numbersArray;
 };
 
+const getMaxArrayNumber = (numbersArray) => {
+	return numbersArray.reduce((a, b) => Math.max(a, b), -Infinity);
+};
+
 let intersectingNodes = [];
 const getIntersectingTextNodes = (node, initialRange) => {
 	for (let i = 0; i < node.childNodes.length; i++) {
