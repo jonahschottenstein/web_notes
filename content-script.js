@@ -52,6 +52,12 @@ const getHighlights = () => {
 	return document.querySelectorAll(".web-notes-highlight");
 };
 
+const getNumberedClass = (highlight) => {
+	return highlight.className
+		.split(" ")
+		.find((className) => /web-notes-highlight-/.test(className));
+};
+
 let intersectingNodes = [];
 const getIntersectingTextNodes = (node, initialRange) => {
 	for (let i = 0; i < node.childNodes.length; i++) {
