@@ -58,6 +58,15 @@ const getNumberedClass = (highlight) => {
 		.find((className) => /web-notes-highlight-/.test(className));
 };
 
+const getNumbersArray = (highlights) => {
+	let numbersArray = [];
+	highlights.forEach((highlight) => {
+		let numberedClass = getNumberedClass(highlight);
+		numbersArray.push(numberedClass[numberedClass.length - 1]);
+	});
+	return numbersArray;
+};
+
 let intersectingNodes = [];
 const getIntersectingTextNodes = (node, initialRange) => {
 	for (let i = 0; i < node.childNodes.length; i++) {
