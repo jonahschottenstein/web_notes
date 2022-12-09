@@ -71,6 +71,12 @@ const getMaxArrayNumber = (numbersArray) => {
 	return numbersArray.reduce((a, b) => Math.max(a, b), -Infinity);
 };
 
+const createNumberedClass = (highlights, number) => {
+	return highlights.length === 0
+		? "web-notes-highlight-1"
+		: `web-notes-highlight-${number}`;
+};
+
 let intersectingNodes = [];
 const getIntersectingTextNodes = (node, initialRange) => {
 	for (let i = 0; i < node.childNodes.length; i++) {
