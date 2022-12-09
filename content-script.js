@@ -17,9 +17,15 @@ const createNewRange = (startNode, startOffset, endNode, endOffset) => {
 	return newRange;
 };
 
-const createStyledSpan = (backgroundColor) => {
+/* const createStyledSpan = (backgroundColor) => {
 	const span = document.createElement("span");
 	span.classList.add("web-notes-highlight");
+	span.style.backgroundColor = backgroundColor;
+	return span;
+}; */
+const createStyledSpan = (backgroundColor, spanClass) => {
+	const span = document.createElement("span");
+	span.classList.add("web-notes-highlight", spanClass);
 	span.style.backgroundColor = backgroundColor;
 	return span;
 };
