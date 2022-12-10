@@ -12,14 +12,14 @@ const highlightText = (span, range) => {
 
 const insertHighlight = (range, span) => range.insertNode(span);
 
-const setHighlightFunc = (range, spanClass) => {
+const setHighlight = (range, spanClass) => {
 	let span = createStyledSpan("red", spanClass);
 	highlightText(span, range);
 	insertHighlight(range, span);
 };
 
-const getHighlightsFunc = () => {
+const getHighlights = () => {
 	return document.querySelectorAll(".web-notes-highlight");
 };
 
-export { setHighlightFunc, getHighlightsFunc };
+export { setHighlight, getHighlights };
