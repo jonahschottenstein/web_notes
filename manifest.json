@@ -16,5 +16,11 @@
 	],
 
 	"permissions": ["tabs", "activeTab", "contextMenus", "scripting"],
-	"host_permissions": ["<all_urls>"]
+	"host_permissions": ["<all_urls>"],
+	"web_accessible_resources": [
+		{
+			"resources": ["range.js"],
+			"matches": ["<all_urls>"]
+		}
+	]
 }
