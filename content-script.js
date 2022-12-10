@@ -11,16 +11,18 @@ const getSelection = () => window.getSelection();
 }; */
 
 let getRange;
-import("./range.js").then(({ getRangeArray }) => {
+let createNewRange;
+import("./range.js").then(({ getRangeArray, createRange }) => {
 	getRange = getRangeArray;
+	createNewRange = createRange;
 });
 
-const createNewRange = (startNode, startOffset, endNode, endOffset) => {
+/* const createNewRange = (startNode, startOffset, endNode, endOffset) => {
 	const newRange = document.createRange();
 	newRange.setStart(startNode, startOffset);
 	newRange.setEnd(endNode, endOffset);
 	return newRange;
-};
+}; */
 
 const createStyledSpan = (backgroundColor, spanClass) => {
 	const span = document.createElement("span");
