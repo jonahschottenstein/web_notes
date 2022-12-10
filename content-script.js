@@ -1,6 +1,6 @@
 const getSelection = () => window.getSelection();
 
-const getRange = (selection) => {
+/* const getRange = (selection) => {
 	let rangeArray = [];
 
 	for (let i = 0; i < selection.rangeCount; i++) {
@@ -8,7 +8,12 @@ const getRange = (selection) => {
 	}
 
 	return rangeArray;
-};
+}; */
+
+let getRange;
+import("./range.js").then(({ getRangeArray }) => {
+	getRange = getRangeArray;
+});
 
 const createNewRange = (startNode, startOffset, endNode, endOffset) => {
 	const newRange = document.createRange();
