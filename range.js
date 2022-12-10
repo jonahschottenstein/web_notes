@@ -8,11 +8,11 @@ const getRangeArray = (selection) => {
 	return rangeArray;
 };
 
-const createNewRange = (startNode, startOffset, endNode, endOffset) => {
+const createRange = (startNode, startOffset, endNode, endOffset) => {
 	const newRange = document.createRange();
 	newRange.setStart(startNode, startOffset);
 	newRange.setEnd(endNode, endOffset);
 	return newRange;
 };
 
-export { getRangeArray, createNewRange };
+export { getRangeArray, createRange };
